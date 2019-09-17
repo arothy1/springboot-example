@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.arothy.api.example.domain.Example;
 import com.arothy.api.example.repository.ExampleRepository;
+import com.arothy.base.service.BaseServiceImpl;
 
 @Service
-public class ExampleServiceImpl implements ExampleService{
+public class ExampleServiceImpl extends BaseServiceImpl<Example, Long> implements ExampleService{
 
 	@Autowired ExampleRepository exampleRepository;
 	

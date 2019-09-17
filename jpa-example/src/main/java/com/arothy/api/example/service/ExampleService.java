@@ -3,11 +3,10 @@ package com.arothy.api.example.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Service;
-
 import com.arothy.api.example.domain.Example;
+import com.arothy.base.service.BaseService;
 
-public interface ExampleService {
+public interface ExampleService extends BaseService<Example, Long>{
 	
 	Example insert(Example example);
 	Example update(Example example);
