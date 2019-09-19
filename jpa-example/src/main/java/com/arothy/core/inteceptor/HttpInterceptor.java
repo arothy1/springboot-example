@@ -16,21 +16,21 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		logger.info("==preHandle==");
+//		logger.info("==preHandle==");
 		return super.preHandle(request, response, handler);
 	}
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		logger.info("==postHandle==");
+//		logger.info("==postHandle==");
 		super.postHandle(request, response, handler, modelAndView);
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		logger.info("==afterComplete==");
+//		logger.info("==afterComplete==");
 		super.afterCompletion(request, response, handler, ex);
 	}
 	

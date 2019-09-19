@@ -1,32 +1,38 @@
 package com.arothy.core.http;
 
+import java.util.Map;
+
 import org.springframework.http.HttpStatus;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(callSuper=false)
-public @Data class HttpResponse<T> extends HttpEntity<T> {
+public @Data class HttpResponse<T> {
 	
-	private static final long serialVersionUID = -5768963793025971631L;
-	
+	protected T payload;
 	private int status;
+	@JsonInclude(Include.NON_NULL)
+	private String error;
+	private String message;
 
 	public HttpResponse() {}
-	public HttpResponse(int status) {
-		super();
-		this.status = status;
-	}
-	public HttpResponse(T payload) {
-		super(payload);
+	
+	public HttpResponse(T body) {
+		this.payload = body;
 		this.status = HttpStatus.OK.value();
+		this.message = HttpStatus.OK.getReasonPhrase();
 	}
-	public HttpResponse(int status, T payload) {
-		super(payload);
-		this.status = status;
+	
+	public HttpResponse(T body, Map<String, Object> errorMap) {
+		this.payload = body;
+		this.status = (Integer)errorMap.get("status");
+		this.error = (String)errorMap.get("error");
+		this.message = (String)errorMap.get("message");
 	}
+	
 	@JsonIgnore
 	public boolean isOk() {
 		if (this.status == HttpStatus.OK.value())

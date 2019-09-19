@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,52 +33,27 @@ public abstract class BaseController<T extends Base, ID extends Serializable> {
 	
 	@GetMapping("")
 	public HttpResponse<Object> findAll(HttpServletRequest req, HttpServletResponse res) {
-		try {
-			return new HttpResponse<Object>(service.findAll());
-		} catch (Exception e) {
-			return handleException(e);
-		}
+		return new HttpResponse<Object>(service.findAll());
 	}
 	
 	@GetMapping("/{id}")
 	public HttpResponse<Object> findById(@PathVariable Long id, HttpServletRequest req, HttpServletResponse res) {
-		try {
-			return new HttpResponse<Object>(service.findById(id));
-		} catch (Exception e) {
-			return handleException(e);
-		}
+		return new HttpResponse<Object>(service.findById(id));
 	}
 	
 	@PostMapping("")
 	public HttpResponse<Object> insert(@RequestBody T entity, HttpServletRequest req, HttpServletResponse res) {
-		try {
-			return new HttpResponse<Object>(service.insert(entity));
-		} catch (Exception e) {
-			return handleException(e);
-		}
+		return new HttpResponse<Object>(service.insert(entity));
 	}
 	
 	@PutMapping("")
 	public HttpResponse<Object> update(@RequestBody T entity, HttpServletRequest req, HttpServletResponse res) {
-		try {
-			return new HttpResponse<Object>(service.update(entity));
-		} catch (Exception e) {
-			return handleException(e);
-		}
+		return new HttpResponse<Object>(service.update(entity));
 	}
 	
 	@DeleteMapping("/{id}")
 	public HttpResponse<Object> delete(@PathVariable Long id, HttpServletRequest req, HttpServletResponse res) {
-		try {
-			service.delete(id);
-			return new HttpResponse<Object>();
-		} catch (Exception e) {
-			return handleException(e);
-		}
-	}
-	
-	public static HttpResponse<Object> handleException(Exception e) {
-		logger.error(e.getMessage());
-		return new HttpResponse<Object>(HttpStatus.INTERNAL_SERVER_ERROR.value());
+		service.delete(id);
+		return new HttpResponse<Object>();
 	}
 }
