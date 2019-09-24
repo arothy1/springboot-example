@@ -54,6 +54,6 @@ public abstract class BaseController<T extends Base, ID extends Serializable> {
 	@DeleteMapping("/{id}")
 	public HttpResponse<Object> delete(@PathVariable Long id, HttpServletRequest req, HttpServletResponse res) {
 		service.delete(id);
-		return new HttpResponse<Object>();
+		return new HttpResponse<Object>(null);
 	}
 }
