@@ -37,52 +37,6 @@ public class BaseServiceImpl<T extends Base, ID extends Serializable> implements
 	public List<T> findAll() {
 		return repository.findAll();
 	}
-	
-	
-	
-
-//	@Override
-//	public List<T> list() {
-//		return this.repository.findAll();
-//	}
-//	
-//	@Override
-//	public Page<T> list(Pageable pageable) {
-//		return this.repository.findAll(pageable);
-//	}
-//
-//	@Override
-//	public T save(T entity) {
-//		return this.repository.save(entity);
-//	}
-//	
-//	@Override
-//	public T find(Long id) {
-//		return this.repository.findOne(id);
-//	}
-//	
-//	@Override
-//	public T find(T entity) {
-//		return this.repository.findOne(entity);
-//	}
-//
-//	@Override
-//	public T delete(Long id) throws CoreException{
-//		try {
-//			T result = this.repository.findOne(id);
-//			this.repository.delete(id);
-//			return result;
-//		} catch (Exception e) {
-//			throw new CoreException(EhrErrorCode.ECS_NOT_EXIST);
-//		}
-//	}
-//
-//	@Override
-//	public List<T> save(Iterable<T> entities) {
-//		return this.repository.save(entities);
-//	}
-
-
 
 }
 
